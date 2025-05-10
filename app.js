@@ -6,14 +6,16 @@ const authRoute = require("./route/authRouter");
 
 const app = express();
 
+app.use(express.json());
+
 app.use(`/api/v1/auth`, authRoute);
 
-app.use('/{*any}', (req, res) => {
-    res.status(404).json({
-        status: 'failed',
-        message: 'Route not found'
-    })
-})
+app.use("/{*any}", (req, res) => {
+  res.status(404).json({
+    status: "failed",
+    message: "Route not found",
+  });
+});
 
 const PORT = process.env.APP_PORT || 3000;
 
